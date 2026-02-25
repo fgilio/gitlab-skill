@@ -18,8 +18,7 @@ metadata:
 
 **Goal**: Eliminate GitLab API errors by design. Scripts handle all quirks internally.
 
-Scripts location: `~/.claude/skills/gitlab/scripts/`
-Runtime: Bun/TypeScript with direct `fetch()` against GitLab REST API.
+All scripts are globally available in PATH - invoke them directly by name.
 
 **Authentication**: `GITLAB_TOKEN` env var, or falls back to `glab auth status -t`.
 **Base URL**: `GITLAB_HOST` env var (e.g. `gitlab.company.com`), or defaults to `gitlab.com`.
