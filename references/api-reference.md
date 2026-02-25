@@ -6,7 +6,7 @@ Reference for GitLab REST API operations used by the skill scripts.
 
 ### Authentication
 Scripts use `GITLAB_TOKEN` env var or fall back to parsing `glab auth status -t`.
-Token is sent as `PRIVATE-TOKEN` header on every request.
+Token is sent as `Authorization: Bearer` header on every request.
 
 ### Base URL
 Determined by `GITLAB_HOST` env var:
