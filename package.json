@@ -1,0 +1,26 @@
+{
+  "name": "gitlab-skill",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "GitLab operations via direct API fetch - no glab CLI dependency",
+  "bin": {
+    "gitlab-mr-view": "./scripts/gitlab-mr-view.ts",
+    "gitlab-mr-create": "./scripts/gitlab-mr-create.ts",
+    "gitlab-mr-update": "./scripts/gitlab-mr-update.ts",
+    "gitlab-mr-close": "./scripts/gitlab-mr-close.ts",
+    "gitlab-mr-branch": "./scripts/gitlab-mr-branch.ts",
+    "gitlab-mr-discussions": "./scripts/gitlab-mr-discussions.ts",
+    "gitlab-mr-discussion-create": "./scripts/gitlab-mr-discussion-create.ts",
+    "gitlab-mr-discussion-reply": "./scripts/gitlab-mr-discussion-reply.ts",
+    "gitlab-pipeline-from-mr": "./scripts/gitlab-pipeline-from-mr.ts",
+    "gitlab-pipeline-jobs": "./scripts/gitlab-pipeline-jobs.ts",
+    "gitlab-job-log": "./scripts/gitlab-job-log.ts",
+    "gitlab-job-status": "./scripts/gitlab-job-status.ts",
+    "gitlab-job-retry": "./scripts/gitlab-job-retry.ts",
+    "gitlab-job-retry-loop": "./scripts/gitlab-job-retry-loop.ts",
+    "gitlab-file-view": "./scripts/gitlab-file-view.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
