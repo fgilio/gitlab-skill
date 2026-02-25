@@ -75,7 +75,7 @@ export async function glabApi(
   }
 
   const headers: Record<string, string> = {
-    "PRIVATE-TOKEN": token,
+    "Authorization": `Bearer ${token}`,
   };
 
   const fetchOpts: RequestInit = { method, headers };
