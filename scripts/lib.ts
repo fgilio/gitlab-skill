@@ -51,7 +51,7 @@ export function getBaseUrl(): string {
   return url;
 }
 
-interface GlabApiOptions {
+export interface GlabApiOptions {
   body?: Record<string, unknown>;
   query?: Record<string, string | number>;
   rawText?: boolean;
@@ -111,6 +111,24 @@ export async function glabApi(
   } catch {
     throw new Error(`Invalid JSON response from ${method} ${path}`);
   }
+}
+
+export async function glabApiPaginated(
+  path: string,
+  opts?: Omit<GlabApiOptions, "body" | "rawText">
+): Promise<any[]> {
+  const results: any[] = [];
+  let page = 1;
+  const perPage = Number(opts?.query?.per_page) || 100;
+  while (true) {
+    const query = { ...opts?.query, page, per_page: perPage };
+    const batch = await glabApi("GET", path, { query });
+    if (!Array.isArray(batch) || batch.length === 0) break;
+    results.push(...batch);
+    if (batch.length < perPage) break;
+    page++;
+  }
+  return results;
 }
 
 async function extractErrorMessage(res: Response): Promise<string> {

@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 // IN: project, mr_id, [filter]  OUT: JSON array  VIA: GET /merge_requests/:iid/discussions
 
-import { glabApi, validateProject, validateNumericId, printUsage, exitError } from "./lib.ts";
+import { glabApiPaginated, validateProject, validateNumericId, printUsage, exitError } from "./lib.ts";
 
 const args = Bun.argv.slice(2);
 const USAGE = `Usage: gitlab-mr-discussions <org/project> <mr-id> [filter]
@@ -25,15 +25,10 @@ if (!["open", "resolved", "all"].includes(filter)) {
 }
 
 try {
-  const discussions: any[] = await glabApi(
-    "GET",
+  const discussions: any[] = await glabApiPaginated(
     `projects/${project}/merge_requests/${mrId}/discussions`,
     { query: { per_page: 100 } }
   );
-
-  if (discussions.length >= 100) {
-    exitError("MR has 100+ discussions. Pagination support needed.");
-  }
 
   // Filter to resolvable (non-system) notes only
   const resolvable = discussions.filter((d: any) => d.notes?.[0]?.resolvable === true);
