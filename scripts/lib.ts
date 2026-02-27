@@ -85,7 +85,23 @@ export async function glabApi(
     fetchOpts.body = JSON.stringify(opts.body);
   }
 
-  const res = await fetch(url, fetchOpts);
+  let res = await fetch(url, fetchOpts);
+
+  // Retry once on 401 - OAuth2 token may have expired
+  if (res.status === 401 && _cachedToken) {
+    _cachedToken = null;
+    try {
+      // Force glab to refresh the OAuth2 token internally
+      const refresh = Bun.spawn(["glab", "api", "/user"], {
+        stdout: "pipe",
+        stderr: "pipe",
+      });
+      await refresh.exited;
+    } catch {}
+    const freshToken = await getToken();
+    headers["Authorization"] = `Bearer ${freshToken}`;
+    res = await fetch(url, fetchOpts);
+  }
 
   // 204 No Content
   if (res.status === 204) return null;
