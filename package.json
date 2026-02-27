@@ -12,6 +12,7 @@
     "gitlab-mr-discussions": "./scripts/gitlab-mr-discussions.ts",
     "gitlab-mr-discussion-create": "./scripts/gitlab-mr-discussion-create.ts",
     "gitlab-mr-discussion-reply": "./scripts/gitlab-mr-discussion-reply.ts",
+    "gitlab-pipeline-latest": "./scripts/gitlab-pipeline-latest.ts",
     "gitlab-pipeline-from-mr": "./scripts/gitlab-pipeline-from-mr.ts",
     "gitlab-pipeline-jobs": "./scripts/gitlab-pipeline-jobs.ts",
     "gitlab-job-log": "./scripts/gitlab-job-log.ts",

@@ -37,7 +37,8 @@ All scripts are globally available in PATH - invoke them directly by name.
 | `gitlab-mr-discussions` | Get comments/threads | `[{discussion}, ...]` |
 | `gitlab-mr-discussion-create` | Start new thread | `{discussion_id, note_id, ...}` |
 | `gitlab-mr-discussion-reply` | Reply to thread | `{note_id, discussion_id, ...}` |
-| `gitlab-pipeline-from-mr` | Get pipeline ID | `123456` or `null` |
+| `gitlab-pipeline-latest` | Latest pipeline for project | `{id, status, ref, web_url}` or `null` |
+| `gitlab-pipeline-from-mr` | Get pipeline ID from MR | `123456` or `null` |
 | `gitlab-pipeline-jobs` | List pipeline jobs | `[{id, name, status}, ...]` |
 | `gitlab-job-log` | Get job logs | Plain text |
 | `gitlab-job-status` | Get job status | `{id, name, status, web_url}` |
@@ -280,6 +281,37 @@ gitlab-mr-discussion-reply publicala/pla-cli 42 "abc123def..." --body "Fixed in 
 ---
 
 ## Pipeline Operations
+
+### gitlab-pipeline-latest
+
+Get the latest pipeline for a project. Optionally filter by branch/tag ref.
+
+```bash
+gitlab-pipeline-latest <org/project> [ref]
+```
+
+**Parameters:**
+| Parameter | Description | Required |
+|-----------|-------------|----------|
+| `org/project` | Project path | Yes |
+| `ref` | Branch or tag name | No |
+
+**Output:**
+```json
+{"id": 123456, "status": "success", "ref": "main", "web_url": "https://gitlab.com/.../pipelines/123456"}
+```
+Or `null` if no pipelines found.
+
+**Examples:**
+```bash
+# Latest pipeline for project
+gitlab-pipeline-latest publicala/mentat
+
+# Latest pipeline for specific branch
+gitlab-pipeline-latest publicala/mentat main
+```
+
+---
 
 ### gitlab-pipeline-from-mr
 

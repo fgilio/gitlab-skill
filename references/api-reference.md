@@ -82,6 +82,12 @@ Body: {body: "reply text"}
 
 ## Pipeline Operations
 
+### List Project Pipelines
+```
+GET /projects/:id/pipelines?per_page=1&order_by=id&sort=desc
+Optional: &ref=branch-name
+```
+
 ### Get Pipeline ID from MR
 ```
 GET /projects/:id/merge_requests/:iid
