@@ -33,6 +33,7 @@ All scripts are globally available in PATH - invoke them directly by name.
 | `gitlab-mr-update` | Update MR | `{id, project, updated}` |
 | `gitlab-mr-view` | Get MR details | Full MR object |
 | `gitlab-mr-close` | Close MR | `{id, project, status}` |
+| `gitlab-mr-merge` | Merge MR | `{id, project, status, url}` |
 | `gitlab-mr-branch` | Get source branch | `"branch-name"` |
 | `gitlab-mr-discussions` | Get comments/threads | `[{discussion}, ...]` |
 | `gitlab-mr-discussion-create` | Start new thread | `{discussion_id, note_id, ...}` |
@@ -148,6 +149,41 @@ gitlab-mr-close <org/project> <mr-id>
 **Output:**
 ```json
 {"id": 123, "project": "org/project", "status": "closed"}
+```
+
+---
+
+### gitlab-mr-merge
+
+Merge a merge request.
+
+```bash
+gitlab-mr-merge <org/project> <mr-id> [options]
+```
+
+**Options:**
+| Option | Description |
+|--------|-------------|
+| `--squash` | Squash commits |
+| `--remove-source-branch` | Delete source branch after merge |
+| `--when-pipeline-succeeds` | Merge when pipeline succeeds (MWPS) |
+| `--message <text>` | Custom merge commit message |
+
+**Output:**
+```json
+{"id": 123, "project": "org/project", "status": "merged", "url": "https://gitlab.com/.../merge_requests/123"}
+```
+
+When `--when-pipeline-succeeds` is used:
+```json
+{"id": 123, "project": "org/project", "status": "merge_when_pipeline_succeeds", "url": "https://gitlab.com/.../merge_requests/123"}
+```
+
+**Note:** Draft MRs cannot be merged - the API returns a clear error. Undraft first with `gitlab-mr-update <project> <id> --ready`.
+
+**Example:**
+```bash
+gitlab-mr-merge publicala/farfalla 42 --squash --remove-source-branch
 ```
 
 ---

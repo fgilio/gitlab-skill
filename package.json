@@ -8,6 +8,7 @@
     "gitlab-mr-create": "./scripts/gitlab-mr-create.ts",
     "gitlab-mr-update": "./scripts/gitlab-mr-update.ts",
     "gitlab-mr-close": "./scripts/gitlab-mr-close.ts",
+    "gitlab-mr-merge": "./scripts/gitlab-mr-merge.ts",
     "gitlab-mr-branch": "./scripts/gitlab-mr-branch.ts",
     "gitlab-mr-discussions": "./scripts/gitlab-mr-discussions.ts",
     "gitlab-mr-discussion-create": "./scripts/gitlab-mr-discussion-create.ts",
