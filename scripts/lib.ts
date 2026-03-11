@@ -202,10 +202,11 @@ async function extractErrorMessage(res: Response): Promise<string> {
 }
 
 export function validateProject(str: string): string {
-  if (!/^[^/]+\/[^/]+$/.test(str)) {
-    exitError("Invalid project format. Use: org/project");
+  const trimmed = str.trim();
+  if (!/^[^/]+(\/[^/]+)+$/.test(trimmed)) {
+    exitError("Invalid project format. Use: org/project or group/subgroup/project");
   }
-  return encodeURIComponent(str);
+  return encodeURIComponent(trimmed);
 }
 
 export function validateNumericId(str: string, name: string): number {
