@@ -501,7 +501,7 @@ gitlab-file-view publicala/farfalla config/app.php abc123
 All scripts return JSON errors to stderr with exit code 1:
 
 ```json
-{"error": "Invalid project format. Use: org/project"}
+{"error": "Invalid project format. Use: org/project or group/subgroup/project"}
 {"error": "MR ID must be a positive number"}
 {"error": "Not found (404)"}
 {"error": "Unauthorized (401) - check your GitLab token"}

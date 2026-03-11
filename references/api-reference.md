@@ -15,12 +15,12 @@ Determined by `GITLAB_HOST` env var:
 - `https://gitlab.company.com` -> `https://gitlab.company.com/api/v4`
 
 ### URL Encoding
-Project paths are URL-encoded: `publicala/farfalla` -> `publicala%2Ffarfalla`.
+Project paths are URL-encoded: `publicala/farfalla` -> `publicala%2Ffarfalla`, `publicala/fenice/dev/monorepo` -> `publicala%2Ffenice%2Fdev%2Fmonorepo`.
 File paths are also URL-encoded for the repository files API.
 Scripts handle this internally via `encodeURIComponent()`.
 
 ### Project Path Format
-Scripts use `org/project` format (e.g., `publicala/farfalla`).
+Scripts accept `org/project` or nested subgroup paths (e.g., `publicala/farfalla`, `publicala/fenice/dev/monorepo`).
 
 ## MR Operations
 
