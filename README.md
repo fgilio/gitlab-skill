@@ -6,23 +6,25 @@ Give Claude the ability to create and manage merge requests, inspect pipelines, 
 
 ## Prerequisites
 
-- [Bun](https://bun.sh) runtime
 - A GitLab personal access token (or `glab` CLI authenticated as fallback)
 
 ## Installation
 
-Clone into your Claude Code skills directory:
+Clone into your Claude Code skills directory and run the setup script:
 
 ```bash
 git clone https://github.com/fgilio/gitlab-skill.git ~/.claude/skills/gitlab
-cd ~/.claude/skills/gitlab && bun install
+~/.claude/skills/gitlab/setup.sh
 ```
 
-Or symlink if you already have it elsewhere:
+Or symlink if you already have it elsewhere, then run setup:
 
 ```bash
 ln -s /path/to/gitlab-skill ~/.claude/skills/gitlab
+~/.claude/skills/gitlab/setup.sh
 ```
+
+`setup.sh` installs runtime dependencies. It requires [Bun](https://bun.sh) on your PATH.
 
 ## Authentication
 
